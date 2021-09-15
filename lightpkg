@@ -1,13 +1,11 @@
 #!/usr/bin/env lua
-local package1 = arg[2]:gsub('&', '')
 if arg[1] == "install" or arg[1] == "-S" then
 	if arg[2] == "a" then
-		local package2 = arg[3]:gsub('&', ''):gsub(' ', ''):gsub('.', '')
-		os.execute("git clone https://aur.archlinux.org/"..package2..".git /tmp/lightpkg/"..package2)
+		os.execute("git clone https://aur.archlinux.org/"..arg[3]..".git /tmp/lightpkg/"..arg[3])
 		os.execute("cd /tmp/lightpkg/"..package2.." && makepkg -si")
 		os.execute("rm -rf /tmp/lightpkg/*")
 	else	
-		os.execute("sudo pacman -S "..package1)
+		os.execute("sudo pacman -S "..arg[2])
 	end
 end
 if arg[1] == "update" or arg[1] == "-Syu" then
